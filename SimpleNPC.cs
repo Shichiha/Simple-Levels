@@ -30,7 +30,7 @@ namespace SimpleLevels
 
             XP = Math.Pow(npc.lifeMax * npc.damage * Math.Max((double)npc.defense, 1.0), 0.5); 
             
-            if (npc.lifeMax == 1)
+            if (npc.lifeMax == 1 || npc.SpawnedFromStatue)
                 XP = 0.0;   
             
             if (XPCap != 0.0)
