@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -12,8 +11,9 @@ using Terraria.ModLoader;
 
 namespace SimpleLevels
 {
-    public class SimpleNPC : GlobalNPC
+	public class SimpleNPC : GlobalNPC
     {
+
         public double XPCap = 0.0;
         
         public override bool InstancePerEntity
@@ -24,14 +24,14 @@ namespace SimpleLevels
             }
         }
 
-        public override void NPCLoot(NPC npc)
+        public override void OnKill(NPC npc)
         {
             double XP;
 
-            XP = Math.Pow(npc.lifeMax * npc.damage * Math.Max((double)npc.defense, 1.0), 0.5);
+            XP = Math.Pow(npc.lifeMax * npc.damage * Math.Max((double)npc.defense, 1.0), 0.5); 
             
             if (npc.lifeMax == 1)
-                XP = 0.0;
+                XP = 0.0;   
             
             if (XPCap != 0.0)
                 XP = Math.Min(XP, XPCap);
@@ -40,7 +40,7 @@ namespace SimpleLevels
             {
                 if (Main.netMode == 2)
                 {
-                    ModPacket packet = mod.GetPacket();
+                    ModPacket packet = Mod.GetPacket();
                     packet.Write((byte)SimpleLevels.Message.AddXP);
                     packet.Write(XP);
                     packet.Send();
@@ -51,5 +51,6 @@ namespace SimpleLevels
                 }
             }
         }
+
     }
 }

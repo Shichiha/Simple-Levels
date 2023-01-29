@@ -37,18 +37,15 @@ namespace SimpleLevels
          * Making sure everything saves and loads correctly.
          */
         
-        public override TagCompound Save()
+        public override void SaveData(TagCompound tag)
         {
-            return new TagCompound
-            {
-                {"level", level},
-                {"xp", currentXP},
-                {"damage", damageMultiplier},
-                {"hp", hpMultiplier}
-            };
+            tag.Set("level", level);
+            tag.Set("xp", currentXP);
+            tag.Set("damage", damageMultiplier);
+            tag.Set("hp", hpMultiplier);
         }
 
-        public override void Load(TagCompound tag)
+        public override void LoadData(TagCompound tag)
         {
             try
             {

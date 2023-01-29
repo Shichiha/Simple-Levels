@@ -14,7 +14,7 @@ namespace SimpleLevels
 {
     class SimpleLevels : Mod
     {
-        public static ModHotKey ShowLevelInfoKey;
+        public static ModKeybind ShowLevelInfoKey;
         public enum Message : byte {AddXP};
         public static Dictionary<Message, List<DataTag>> dataTags = new Dictionary<Message, List<DataTag>>()
         {
@@ -27,7 +27,7 @@ namespace SimpleLevels
 
         public override void Load()
         {
-            ShowLevelInfoKey = RegisterHotKey("Show level info", "C");
+            ShowLevelInfoKey = KeybindLoader.RegisterKeybind(this, "Show level info", "C");
         }
 
         public override void Unload()
